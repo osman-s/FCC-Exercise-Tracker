@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Exercise Tracker | Free Code Camp</title>
+    <link
+      rel="shortcut icon"
+      href=""
+      type="image/x-icon"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- Awesome Fonts -->
+    <script
+      src="https://kit.fontawesome.com/51238edcb8.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <!-- Set Local CSS Style -->
+    <link rel="stylesheet" type="text/css"   href="/css/style.css">
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>Exercise tracker</h1>
+      <form action="/api/exercise/new-user" method="post">
+        <h3>Create a New User</h3>
+        <p><code>POST /api/exercise/new-user</code></p>
+        <input id="uname" type="text" name="name" placeholder="username" />
+        <input type="submit" value="Submit" />
+      </form>
+      <form action="/api/exercise/add" method="post">
+        <h3>Add exercises</h3>
+        <p><code>POST /api/exercise/add</code></p>
+        <input id="uid" type="text" name="userId" placeholder="userId*" />
+        <input
+          id="desc"
+          type="text"
+          name="description"
+          placeholder="description*"
+        />
+        <input
+          id="dur"
+          type="text"
+          name="duration"
+          placeholder="duration* (mins.)"
+        />
+        <input
+          id="dat"
+          type="text"
+          name="date"
+          placeholder="date (yyyy-mm-dd)"
+        />
+        <input type="submit" value="Submit" />
+      </form>
+      <div class="centerthis">
+      <p>
+        <strong>GET list of users: </strong
+        ><code
+          >GET /api/exercise/users</code
+        >
+      </p>
+      <p>
+        <strong>GET users's exercise log: </strong
+        ><code
+          >GET /api/exercise/log?{userId}[&amp;from][&amp;to][&amp;limit]</code
+        >
+      </p>
+      <p><strong>{ }</strong> = required, <strong>[ ]</strong> = optional</p>
+      <p>
+        <strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> =
+        number
+      </p>
+      </div>
+      <div class="">
+        <a href="https://www.linkedin.com/in/osman-s-hasan-493001a1/">
+          <span ><i class="fab fa-linkedin-in"></i></span>
+        </a>
+        <a href="https://github.com/osman-s?tab=projects">
+          <span ><i class="fab fa-github"></i></span>
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
