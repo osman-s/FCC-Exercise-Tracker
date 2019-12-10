@@ -9,10 +9,27 @@ const router = express.Router();
 var urlencodedParser = bodyParser.urlencoded({ extended: false });
 
 router.get("/log", async (req, res) => {
-  const user = await User.find({})
-    .sort({ name: 1 })
-    .select("name _id");
-  res.send(user);
+  const from = new Date(req.query.from);
+  const to = new Date(req.query.to);
+
+  const userId = req.query.userId;
+  if (!userId) return res.status(400).send("No userId input found.");
+
+  const users = await User.findById(userId);
+  if (!users) return res.status(400).send("Invalid userId.");
+
+  console.log(userId);
+
+  let logs = await Exercise.find({
+    userId: userId,
+    date: {
+      $lt: to != "Invalid Date" ? to.getTime() : Date.now(),
+      $gt: from != "Invalid Date" ? from.getTime() : 0
+    }
+  })
+    .sort("-date")
+    .limit(parseInt(req.query.limit));
+  res.send(logs);
 });
 
 router.post("/add", urlencodedParser, async (req, res) => {
@@ -31,8 +48,13 @@ router.post("/add", urlencodedParser, async (req, res) => {
     date: logs.date
   });
   await exercise.save();
-  exercise = _.pick(exercise, ["_id", "userId", "description", "duration", "date"]);
-  console.log(exercise);
+  exercise = _.pick(exercise, [
+    "_id",
+    "userId",
+    "description",
+    "duration",
+    "date"
+  ]);
   res.send(exercise);
 });
 
